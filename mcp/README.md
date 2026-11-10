@@ -58,12 +58,13 @@ claude mcp add mailgod \
   -- node /ABSOLUTE/PATH/TO/email_marketing/mcp/dist/index.js
 ```
 
-## Tools (21)
+## Tools (25)
 - **Connection/help:** `check_connection`, `read_guide`
 - **Prospects:** `add_prospect`, `add_prospects`, `find_prospects`, `get_prospect`, `update_prospect`, `tag_prospects`
 - **Content:** `list_templates`, `create_template`, `list_segments`, `preview_segment_count`, `create_segment`
 - **Sending (draft-first):** `draft_one_off`, `draft_campaign`, `test_send`, `confirm_send`, `get_send_status`
-- **Flows/analytics:** `list_flows`, `enroll_in_flow`, `get_analytics`
+- **Scheduling:** `schedule_send`, `cancel_scheduled_send`, `list_scheduled_sends`
+- **Flows/analytics:** `list_flows`, `enroll_in_flow`, `get_analytics`, `get_engaged_prospects`
 
 ## Safety model
 Sending is **draft-first**: `draft_one_off` / `draft_campaign` only stage; the

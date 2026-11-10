@@ -13,7 +13,7 @@ Visual automation flows, a shared reply inbox, a sales pipeline, your own SMTP s
 Most email tools charge you more as your list grows, lock your data behind their UI, and treat replies as an afterthought. Mailgod does it the other way round:
 
 - **Replies are the product.** Every email carries a tokenized `Reply-To`, so replies land in a shared inbox already threaded to the subscriber, campaign, and flow step that triggered them. Flows can **exit on reply** and hand the lead to a human.
-- **Agent-native.** A bundled [MCP server](./mcp) exposes 21 tools to Claude and other AI agents for adding prospects, building segments and templates, and sending. Bulk sends are draft-first, so an agent can't blast your list by accident.
+- **Agent-native.** A bundled [MCP server](./mcp) exposes 25 tools to Claude and other AI agents for adding prospects, building segments and templates, and sending. Bulk sends are draft-first, so an agent can't blast your list by accident.
 - **Deliverability first.** Per-subscriber frequency caps, a global rate limit, RFC 5322 threading for follow-ups, mailto `List-Unsubscribe`, no click-tracking redirectors, and auto-pause for unhealthy mailboxes.
 - **Yours.** MongoDB + Node + React. MIT licensed. Fork it, rebrand it, ship it.
 
