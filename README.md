@@ -111,3 +111,5 @@ PRs welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md).
 ## License
 
 [MIT](./LICENSE)
+
+Website: https://lucifersharma.github.io/mailgod/
