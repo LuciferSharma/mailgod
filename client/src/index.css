@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/* ── Theme Variables ─────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --th-surface: #fafafa;
+  --th-card: #ffffff;
+  --th-elevated: #f4f4f5;
+  --th-field: #ffffff;
+
+  /* Foreground / text */
+  --th-heading: #09090b;
+  --th-body: #27272a;
+  --th-subtle: #71717a;
+  --th-dim: #a1a1aa;
+
+  /* Borders */
+  --th-line: #e4e4e7;
+  --th-field-line: #d4d4d8;
+
+  /* Links */
+  --th-link: #2563eb;
+
+  /* Charts */
+  --th-chart-grid: #f0f0f0;
+  --th-chart-tooltip-bg: #ffffff;
+  --th-chart-tooltip-border: #e5e7eb;
+}
+
+.dark {
+  --th-surface: #09090b;
+  --th-card: #18181b;
+  --th-elevated: #27272a;
+  --th-field: #27272a;
+
+  --th-heading: #fafafa;
+  --th-body: #d4d4d8;
+  --th-subtle: #71717a;
+  --th-dim: #52525b;
+
+  --th-line: #27272a;
+  --th-field-line: #3f3f46;
+
+  --th-link: #60a5fa;
+
+  --th-chart-grid: #27272a;
+  --th-chart-tooltip-bg: #18181b;
+  --th-chart-tooltip-border: #27272a;
+}
+
+/* ── Register as Tailwind Colors ─────────────────────── */
+@theme {
+  --color-surface: var(--th-surface);
+  --color-card: var(--th-card);
+  --color-elevated: var(--th-elevated);
+  --color-field: var(--th-field);
+
+  --color-heading: var(--th-heading);
+  --color-body: var(--th-body);
+  --color-subtle: var(--th-subtle);
+  --color-dim: var(--th-dim);
+
+  --color-line: var(--th-line);
+  --color-field-line: var(--th-field-line);
+
+  --color-link: var(--th-link);
+
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  --color-success-500: #22c55e;
+  --color-warning-500: #f59e0b;
+  --color-danger-500: #ef4444;
+}
+
+@layer base {
+  body {
+    @apply antialiased bg-surface text-body;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--th-surface); }
+  ::-webkit-scrollbar-thumb { background: var(--th-dim); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--th-subtle); }
+
+  select option { background-color: var(--th-card); color: var(--th-heading); }
+  select optgroup { background-color: var(--th-elevated); color: var(--th-subtle); }
+}
+
+/* Prospect drawer slide-in (Tailwind v4 — no config; used via animate-[slideInRight_…]) */
+@keyframes slideInRight {
+  from { transform: translateX(8px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ── Email Body — Reader Surface ────────────────────────
+   Inbound HTML emails arrive with arbitrary inline styles authored
+   for white backgrounds (color: #333, bgcolor="#fff", etc.). Inline
+   styles are highest CSS specificity short of !important, so every
+   override below uses !important to win. The result: a typographic
+   reader pane that adopts the app's theme tokens regardless of what
+   the author intended. Works in both light and dark modes — tokens
+   swap automatically via the .dark class.
+
+   Scope is .email-prose so nothing else in the app is affected.
+*/
+.email-prose {
+  color: var(--th-body);
+  font-size: 14px;
+  line-height: 1.65;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Neutralize hostile backgrounds — emails frequently set bg to #fff or #f5f5f5 */
+.email-prose *,
+.email-prose *[bgcolor],
+.email-prose *[style*="background"] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Force all text to theme body color */
+.email-prose *,
+.email-prose *[color],
+.email-prose *[style*="color"] {
+  color: var(--th-body) !important;
+}
+
+/* Headings + emphasis pop with heading color */
+.email-prose h1,
+.email-prose h2,
+.email-prose h3,
+.email-prose h4,
+.email-prose h5,
+.email-prose h6,
+.email-prose strong,
+.email-prose b {
+  color: var(--th-heading) !important;
+  font-weight: 600;
+}
+
+.email-prose h1 { font-size: 1.5rem; line-height: 1.3; margin: 1.25em 0 0.5em; }
+.email-prose h2 { font-size: 1.25rem; line-height: 1.35; margin: 1.15em 0 0.45em; }
+.email-prose h3 { font-size: 1.1rem; line-height: 1.4; margin: 1em 0 0.4em; }
+.email-prose h4, .email-prose h5, .email-prose h6 { font-size: 1rem; margin: 0.9em 0 0.35em; }
+
+.email-prose p { margin: 0.6em 0; }
+.email-prose p:first-child { margin-top: 0; }
+.email-prose p:last-child { margin-bottom: 0; }
+
+/* Links — readable, distinct, never lost on either theme */
+.email-prose a,
+.email-prose a * {
+  color: var(--th-link) !important;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--th-link) 40%, transparent);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.15s ease;
+}
+.email-prose a:hover,
+.email-prose a:hover * {
+  text-decoration-color: var(--th-link);
+}
+
+/* Lists */
+.email-prose ul, .email-prose ol { padding-left: 1.5em; margin: 0.6em 0; }
+.email-prose li { margin: 0.25em 0; }
+.email-prose li::marker { color: var(--th-subtle); }
+
+/* Blockquotes — quiet, indented, with accent rail */
+.email-prose blockquote {
+  border-left: 2px solid var(--th-line) !important;
+  padding: 0.15em 0 0.15em 1em;
+  margin: 0.75em 0;
+  color: var(--th-subtle) !important;
+  font-style: normal;
+}
+.email-prose blockquote * { color: var(--th-subtle) !important; }
+
+/* Code + pre */
+.email-prose code {
+  background-color: var(--th-elevated) !important;
+  color: var(--th-heading) !important;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.email-prose pre {
+  background-color: var(--th-elevated) !important;
+  border: 1px solid var(--th-line) !important;
+  border-radius: 6px;
+  padding: 0.75em 1em;
+  margin: 0.8em 0;
+  overflow-x: auto;
+}
+.email-prose pre code { background: transparent !important; padding: 0; }
+
+/* Tables — calm the borders, let content breathe */
+.email-prose table {
+  border-collapse: collapse;
+  width: auto !important;
+  max-width: 100%;
+  margin: 0.75em 0;
+}
+.email-prose table,
+.email-prose td,
+.email-prose th {
+  border-color: var(--th-line) !important;
+}
+.email-prose th {
+  color: var(--th-heading) !important;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.4em 0.65em;
+}
+.email-prose td { padding: 0.4em 0.65em; }
+
+/* Images — never break the container */
+.email-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 0.5em 0;
+}
+
+/* Horizontal rule */
+.email-prose hr {
+  border: 0;
+  border-top: 1px solid var(--th-line) !important;
+  margin: 1.25em 0;
+}
+
+/* Plain-text bodies — rendered as <pre> with a class to keep formatting
+   but inherit theme typography. */
+.email-prose-plain {
+  color: var(--th-body);
+  font-size: 14px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Inbox reply composer — TipTap rich editor */
+.tiptap-reply-content,
+.tiptap-reply-content.ProseMirror {
+  color: var(--th-body);
+  min-height: 120px;
+  outline: none;
+}
+.tiptap-reply-content p { margin: 0 0 0.75em; }
+.tiptap-reply-content p:last-child { margin-bottom: 0; }
+.tiptap-reply-content a {
+  color: var(--th-link) !important;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--th-link) 55%, transparent);
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.tiptap-reply-content a:hover {
+  text-decoration-color: var(--th-link);
+}
+.tiptap-reply-content ul,
+.tiptap-reply-content ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+.tiptap-reply-content li { margin: 0.2em 0; }

@@ -1,0 +1,69 @@
+/* Dark mode overrides for React Flow */
+.flow-dark .react-flow__controls {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.flow-dark .react-flow__controls-button {
+  background: #27272a;
+  border: 1px solid #3f3f46;
+  color: #a1a1aa;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  margin: 2px;
+  transition: all 0.15s ease;
+}
+
+.flow-dark .react-flow__controls-button:hover {
+  background: #3f3f46;
+  color: #e4e4e7;
+}
+
+.flow-dark .react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+.flow-dark .react-flow__minimap {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.flow-dark .react-flow__minimap-mask {
+  fill: rgba(9, 9, 11, 0.7) !important;
+}
+
+.flow-dark .react-flow__edge-path {
+  cursor: pointer;
+}
+
+.flow-dark .react-flow__edge.selected .react-flow__edge-path {
+  stroke: #60a5fa !important;
+  stroke-width: 2.5px !important;
+}
+
+.flow-dark .react-flow__connection-line {
+  stroke: #60a5fa;
+  stroke-width: 2px;
+}
+
+.flow-dark .react-flow__handle {
+  transition: all 0.15s ease;
+}
+
+.flow-dark .react-flow__handle:hover {
+  transform: scale(1.3);
+}
+
+.flow-dark .react-flow__selection {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.flow-dark .react-flow__edge-interaction {
+  cursor: pointer;
+}
+

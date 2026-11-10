@@ -1,0 +1,24 @@
+# Quickstart:  cp .env.example .env  (fill in secrets)  &&  docker compose up -d
+# Then open http://localhost:8080 and log in with ADMIN_PASSWORD.
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file: .env
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongodb:27017/mailgod}
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
